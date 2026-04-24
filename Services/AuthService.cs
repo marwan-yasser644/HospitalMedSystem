@@ -12,7 +12,6 @@ namespace HospitalMedSystem.Services
         private static readonly string FilePath =
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "users.dat");
 
-        // Load from file
         public void Load()
         {
             _users.Clear();
@@ -38,7 +37,6 @@ namespace HospitalMedSystem.Services
             }
         }
 
-        // Save to file
         public void Save()
         {
             using (StreamWriter writer = new StreamWriter(FilePath, false))
@@ -50,7 +48,6 @@ namespace HospitalMedSystem.Services
             }
         }
 
-        // Add new user (registration)
         public void Add(User user)
         {
             if (_users.Exists(u => u.Username == user.Username))
@@ -60,7 +57,7 @@ namespace HospitalMedSystem.Services
             Save();
         }
 
-        //Login
+        
         public User Get(string username, string passwordHash)
         {
             return _users.Find(u =>

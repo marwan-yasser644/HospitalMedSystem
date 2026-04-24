@@ -1,22 +1,18 @@
-// ============================================================
-//  Nurse.cs  –  Inherits from Person (second derived class)
-// ============================================================
+
 
 using System;
 
 namespace HospitalMedSystem
 {
-    /// <summary>
-    /// A Nurse IS-A Person (INHERITANCE – second derived class).
-    /// Demonstrates that the inheritance hierarchy has multiple leaves.
-    /// </summary>
+   
+
     public class Nurse : Person
     {
-        // ── Private backing fields ───────────────────────────────
+
         private string _employeeId;
         private string _department;
 
-        // ── Properties ───────────────────────────────────────────
+
 
         public string EmployeeId
         {
@@ -40,20 +36,22 @@ namespace HospitalMedSystem
             }
         }
 
-        public string Shift { get; set; }  // e.g. "Day", "Night"
+        public string Shift { get; set; }  
 
-        // ── Constructor ──────────────────────────────────────────
+
+
 
         public Nurse(string employeeId, string firstName, string lastName,
                      int age, string department, string shift = "Day")
-            : base(firstName, lastName, age)   // calls Person constructor
+            : base(firstName, lastName, age)   
+
         {
             EmployeeId = employeeId;
             Department = department;
             Shift      = shift;
         }
 
-        // ── Overridden method ─────────────────────────────────────
+
 
         public override string GetDisplayInfo()
         {

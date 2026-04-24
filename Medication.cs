@@ -1,22 +1,17 @@
-// ============================================================
-//  Medication.cs  –  Represents a single prescribed medication
-// ============================================================
+
 
 using System;
 
 namespace HospitalMedSystem
 {
-    /// <summary>
-    /// Stores all details about one medication entry.
-    /// Uses DrugType and AdministrationTime enums.
-    /// </summary>
+  
     public class Medication
     {
-        // ── Private backing fields ───────────────────────────────
+
         private string _drugName;
         private string _dosage;
 
-        // ── Properties ───────────────────────────────────────────
+
 
         public string DrugName
         {
@@ -40,16 +35,16 @@ namespace HospitalMedSystem
             }
         }
 
-        /// <summary>The physical form of the drug (Tablet, Injection, etc.)</summary>
+
         public DrugType Type { get; set; }
 
-        /// <summary>When during the day the drug should be taken.</summary>
+
         public AdministrationTime TimeOfAdministration { get; set; }
 
-        /// <summary>Optional instructions (e.g. "Take with food").</summary>
+
         public string Notes { get; set; }
 
-        // ── Constructor ──────────────────────────────────────────
+
 
         public Medication(string drugName, string dosage,
                           DrugType type, AdministrationTime timeOfAdministration,
@@ -62,20 +57,15 @@ namespace HospitalMedSystem
             Notes                = notes ?? string.Empty;
         }
 
-        // ── Serialization helpers (used by HospitalDataService) ──
+      
 
-        /// <summary>
-        /// Converts the medication to a pipe-delimited string for file storage.
-        /// Format:  DrugName|Dosage|Type|TimeOfAdministration|Notes
-        /// </summary>
         public string ToFileString()
         {
             return $"{DrugName}|{Dosage}|{(int)Type}|{(int)TimeOfAdministration}|{Notes}";
         }
 
-        /// <summary>
-        /// Parses a pipe-delimited line back into a Medication object.
-        /// </summary>
+      
+
         public static Medication FromFileString(string line)
         {
             string[] parts = line.Split('|');

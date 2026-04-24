@@ -1,24 +1,20 @@
-// ============================================================
-//  Person.cs  –  Abstract base class (INHERITANCE root)
-// ============================================================
+
+
 
 using System;
 
 namespace HospitalMedSystem
 {
-    /// <summary>
-    /// Abstract base class for all people in the system.
-    /// Demonstrates INHERITANCE (Person → Patient, Nurse)
-    /// and ENCAPSULATION (private fields + public properties).
-    /// </summary>
+
+
     public abstract class Person
     {
-        // ── Private backing fields (ENCAPSULATION) ──────────────
+
         private string _firstName;
         private string _lastName;
         private int    _age;
 
-        // ── Properties with validation ───────────────────────────
+
 
         public string FirstName
         {
@@ -53,22 +49,19 @@ namespace HospitalMedSystem
             }
         }
 
-        /// <summary>Read-only computed full name.</summary>
+
         public string FullName => $"{FirstName} {LastName}";
 
-        // ── Constructor ──────────────────────────────────────────
+      
 
-        /// <summary>
-        /// Base constructor – called by derived class constructors via : base(...)
-        /// </summary>
         protected Person(string firstName, string lastName, int age)
         {
-            FirstName = firstName;   // uses property setter (validation runs)
+            FirstName = firstName;   
             LastName  = lastName;
             Age       = age;
         }
 
-        // ── Virtual method (can be overridden in derived classes) ─
+
         public virtual string GetDisplayInfo()
         {
             return $"{FullName}, Age: {Age}";
