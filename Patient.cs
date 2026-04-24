@@ -1,26 +1,21 @@
 
-
-
 using System;
 using System.Collections.Generic;
 
 namespace HospitalMedSystem
 {
-   
+
 
     public class Patient : Person
     {
-
         private string _patientId;
         private string _ward;
-
 
 
         public string PatientId
         {
             get => _patientId;
             private set   
-
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentException("Patient ID cannot be empty.");
@@ -41,10 +36,9 @@ namespace HospitalMedSystem
 
         public DateTime AdmissionDate { get; set; }
 
-        
+
 
         public List<Medication> Medications { get; private set; }
-
 
 
         public Patient(string patientId, string firstName, string lastName,
@@ -58,13 +52,13 @@ namespace HospitalMedSystem
         }
 
 
+        
         public void AddMedication(Medication medication)
         {
             if (medication == null)
                 throw new ArgumentNullException(nameof(medication), "Medication cannot be null.");
             Medications.Add(medication);
         }
-
 
         public bool RemoveMedication(string drugName)
         {
@@ -77,7 +71,6 @@ namespace HospitalMedSystem
             }
             return false;
         }
-
 
         public override string GetDisplayInfo()
         {
@@ -92,7 +85,6 @@ namespace HospitalMedSystem
             return $"PATIENT|{PatientId}|{FirstName}|{LastName}|" +
                    $"{Age}|{Ward}|{AdmissionDate:yyyy-MM-dd}";
         }
-
 
         public static Patient FromFileString(string line)
         {

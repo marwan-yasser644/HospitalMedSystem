@@ -1,10 +1,11 @@
 
 
+
 using System;
 
 namespace HospitalMedSystem
 {
-   
+
 
     public class Nurse : Person
     {
@@ -44,13 +45,11 @@ namespace HospitalMedSystem
         public Nurse(string employeeId, string firstName, string lastName,
                      int age, string department, string shift = "Day")
             : base(firstName, lastName, age)   
-
         {
             EmployeeId = employeeId;
             Department = department;
             Shift      = shift;
         }
-
 
 
         public override string GetDisplayInfo()

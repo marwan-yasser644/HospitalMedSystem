@@ -1,6 +1,5 @@
 
 
-
 using System;
 using System.Windows.Forms;
 
@@ -11,18 +10,15 @@ namespace HospitalMedSystem
         [STAThread]
         static void Main()
         {
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             try
             {
-
                 Application.Run(new MainForm());
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(
                     "A fatal error occurred:\n\n" + ex.Message +
                     "\n\nThe application will now close.",

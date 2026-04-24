@@ -21,7 +21,7 @@ namespace HospitalMedSystem
         private Label     lblTitle;
 
         /// <summary>The newly created medication (null if cancelled).</summary>
-           public Medication NewMedication { get; private set; }
+        public Medication NewMedication { get; private set; }
 
         // ── Constructor ──────────────────────────────────────────
         public AddMedicationForm(string patientName)

@@ -1,10 +1,12 @@
 
 
+
 using System;
 
 namespace HospitalMedSystem
 {
-  
+
+
     public class Medication
     {
 
@@ -64,7 +66,7 @@ namespace HospitalMedSystem
             return $"{DrugName}|{Dosage}|{(int)Type}|{(int)TimeOfAdministration}|{Notes}";
         }
 
-      
+
 
         public static Medication FromFileString(string line)
         {

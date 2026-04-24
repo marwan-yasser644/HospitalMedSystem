@@ -1,12 +1,14 @@
 
 
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace HospitalMedSystem
 {
-    
+
+
     public static class HospitalDataService
     {
 
@@ -19,7 +21,9 @@ namespace HospitalMedSystem
         private static readonly string DataFilePath =
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "patients.dat");
 
-        
+
+
+
         public static void AddPatient(Patient patient)
         {
             if (patient == null)
@@ -49,7 +53,11 @@ namespace HospitalMedSystem
             return false;
         }
 
-     
+
+
+
+
+
 
         public static List<Patient> SearchByName(string name)
         {
@@ -71,12 +79,13 @@ namespace HospitalMedSystem
                 p.PatientId.Equals(id, StringComparison.OrdinalIgnoreCase));
         }
 
-      
+
+
+   
 
         public static void SaveToFile(string filePath = null)
         {
-            filePath ??= DataFilePath;  
-
+            filePath ??= DataFilePath;   
 
             try
             {
@@ -105,15 +114,17 @@ namespace HospitalMedSystem
                 throw new IOException(
                     $"Directory not found for path '{filePath}'.", ex);
             }
-            
+
         }
 
-        
+    
+
         public static void LoadFromFile(string filePath = null)
         {
             filePath ??= DataFilePath;
 
             _patients.Clear();
+
 
             if (!File.Exists(filePath))
                 return;
@@ -153,7 +164,7 @@ namespace HospitalMedSystem
             }
         }
 
-     
+    
 
         public static void LoadSampleData()
         {

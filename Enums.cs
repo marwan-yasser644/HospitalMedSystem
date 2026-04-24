@@ -1,6 +1,10 @@
+
+
+
 namespace HospitalMedSystem
 {
- 
+
+
     public enum DrugType
     {
         Tablet,
@@ -12,7 +16,8 @@ namespace HospitalMedSystem
         Inhaler
     }
 
-   
+
+
     public enum AdministrationTime
     {
         Morning,
