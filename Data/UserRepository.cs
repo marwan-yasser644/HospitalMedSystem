@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.IO;
 using HospitalMedSystem.Models;
 
@@ -7,14 +6,15 @@ namespace HospitalMedSystem.Data
 {
     public class UserRepository
     {
-        private static List<User> _users = new List<User>();
+        private static User[] _users = new User[100]; 
+        private static int _count = 0;
 
         private static readonly string FilePath =
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "users.dat");
 
         public void Load()
         {
-            _users.Clear();
+            _count = 0;
 
             if (!File.Exists(FilePath))
                 return;
@@ -27,12 +27,14 @@ namespace HospitalMedSystem.Data
 
                 if (parts.Length == 3)
                 {
-                    _users.Add(new User
+                    _users[_count] = new User
                     {
                         Username = parts[0],
                         PasswordHash = parts[1],
                         Role = parts[2]
-                    });
+                    };
+
+                    _count++;
                 }
             }
         }
@@ -41,27 +43,42 @@ namespace HospitalMedSystem.Data
         {
             using (StreamWriter writer = new StreamWriter(FilePath, false))
             {
-                foreach (var user in _users)
+                for (int i = 0; i < _count; i++)
                 {
-                    writer.WriteLine($"{user.Username}|{user.PasswordHash}|{user.Role}");
+                    writer.WriteLine($"{_users[i].Username}|{_users[i].PasswordHash}|{_users[i].Role}");
                 }
             }
         }
 
         public void Add(User user)
         {
-            if (_users.Exists(u => u.Username == user.Username))
-                throw new Exception("User already exists");
+            if (_count >= _users.Length)
+                throw new Exception("Array is full");
 
-            _users.Add(user);
+            for (int i = 0; i < _count; i++)
+            {
+                if (_users[i].Username == user.Username)
+                    throw new Exception("User already exists");
+            }
+
+            _users[_count] = user;
+            _count++;
+
             Save();
         }
 
         public User Get(string username, string passwordHash)
         {
-            return _users.Find(u =>
-                u.Username == username &&
-                u.PasswordHash == passwordHash);
+            for (int i = 0; i < _count; i++)
+            {
+                if (_users[i].Username == username &&
+                    _users[i].PasswordHash == passwordHash)
+                {
+                    return _users[i];
+                }
+            }
+
+            return null;
         }
     }
 }
